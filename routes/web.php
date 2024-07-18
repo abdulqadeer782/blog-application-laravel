@@ -4,7 +4,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,11 +21,7 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('/blogs', [HomeController::class, 'blogs']);
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix('user')->group(function () {
 
     // categories route
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
