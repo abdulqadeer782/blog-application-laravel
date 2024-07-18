@@ -32,7 +32,7 @@
 
                 <div class="mb-4">
                     <label for="cover_image" class="block text-sm font-medium text-gray-700">Cover Image</label>
-                    <input type="file" name="cover_image" id="cover_image"
+                    <input value="{{$post->cover_image}}" type="file" name="cover_image" id="cover_image"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @if ($post->cover_image)
                         <img src="{{ asset('storage/' . $post->cover_image) }}" alt="Cover Image"

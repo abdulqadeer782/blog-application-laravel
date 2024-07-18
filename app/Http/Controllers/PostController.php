@@ -82,8 +82,9 @@ class PostController extends Controller
             $post->category_id = $request->category_id;
 
             if ($request->hasFile('cover_image')) {
-                if ($post->cover_image) {
-                    Storage::delete('public/' . $post->cover_image);
+                if (Storage::exists('public/' . $request->cover_image)) {
+                    dd($request->cover_image);
+
                 }
 
                 $imagePath = $request->file('cover_image')->store('public/');
