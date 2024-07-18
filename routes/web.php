@@ -21,6 +21,10 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('/blogs', [HomeController::class, 'blogs']);
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/blog/{id}', [HomeController::class, 'viewBlog'])->name('blog.show');
+});
+
 Route::middleware('auth')->prefix('user')->group(function () {
 
     // categories route
@@ -38,9 +42,8 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-
+    // userss
     Route::get('users', [UserController::class, 'index'])->name('users.index');
-
 });
 
 require __DIR__ . '/auth.php';
