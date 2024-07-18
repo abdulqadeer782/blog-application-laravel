@@ -23,6 +23,7 @@ Route::get('/blogs', [HomeController::class, 'blogs']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/blog/{id}', [HomeController::class, 'viewBlog'])->name('blog.show');
+    Route::post('/blog/{id}/comment', [HomeController::class, 'addComment'])->name('blog.comment');
 });
 
 Route::middleware('auth')->prefix('user')->group(function () {
