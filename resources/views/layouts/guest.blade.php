@@ -13,7 +13,6 @@
 
 <body>
     <div class="flex justify-center items-center h-screen bg-gray-200 px-6">
-        <x-alert />
         <div class="p-6 max-w-sm w-full bg-white shadow-md rounded-md">
             {{ $slot }}
         </div>

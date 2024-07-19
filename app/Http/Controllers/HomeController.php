@@ -44,6 +44,7 @@ class HomeController extends Controller
     }
     public function blogs()
     {
-        return view('blog');
+        $post = Post::all();
+        return view('blogs/index', ['posts' => $post]);
     }
 }
