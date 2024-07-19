@@ -32,18 +32,22 @@
                 </label>
             </div>
 
-            <div>
+            <!-- <div>
                 @if (Route::has('password.request'))
                     <a class="block text-sm fontme text-indigo-700 hover:underline"
                         href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                 @endif
-            </div>
+            </div> -->
         </div>
 
-        <div class="mt-6">
+        <div class="flex flex-col items-end mt-4">
             <x-primary-button class="w-full">
-                {{ __('Log in') }}
+                {{ __('Login') }}
             </x-primary-button>
+
+            <a class="mt-4 text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('register') }}">
+                {{ __('Don`t have an account?') }}
+            </a>
         </div>
 
     </form>

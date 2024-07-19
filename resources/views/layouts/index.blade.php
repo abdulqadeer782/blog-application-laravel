@@ -14,7 +14,7 @@
 <body style="min-height:100vh;position:relative">
     <header class="bg-gray-800 text-white p-4 flex justify-between items-center px-5" style="height: 70px;">
         <div class="text-lg font-semibold">
-            Blog Application
+            <a href="/"> Blog Application</a>
         </div>
         <div class=" flex items-center ">
             <a href="{{route('posts.create')}}">
