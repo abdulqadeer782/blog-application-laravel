@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -42,9 +43,13 @@ class HomeController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
-    public function blogs()
+    public function blogs(Request $request)
     {
-        $post = Post::all();
-        return view('blogs/index', ['posts' => $post]);
+        $post = Post::query()->when($request->category, function ($query) use ($request) {
+            $query->where('category_id', $request->category);
+        })->get();
+        $categories = Category::all();
+
+        return view('blogs/index', ['posts' => $post, 'categories' => $categories]);
     }
 }

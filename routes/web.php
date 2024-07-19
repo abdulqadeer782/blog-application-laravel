@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home']);
-Route::get('/blogs', [HomeController::class, 'blogs']);
+Route::get('/blog/{id}', [HomeController::class, 'viewBlog'])->name('blog.show');
+Route::get('/blogs', [HomeController::class, 'blogs'])->name('blog.index');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/blog/{id}', [HomeController::class, 'viewBlog'])->name('blog.show');
     Route::post('/blog/{id}/comment', [HomeController::class, 'addComment'])->name('blog.comment');
 });
 
