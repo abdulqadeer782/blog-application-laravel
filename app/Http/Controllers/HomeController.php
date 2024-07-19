@@ -20,7 +20,7 @@ class HomeController extends Controller
         $post = Post::with(['user', 'category'])->where('id', $id)->first();
         $comments = Comment::with('user')->where('post_id', $id)->get();
 
-        return view('blogs/index', ['post' => $post, 'comments' => $comments]);
+        return view('blogs/show', ['post' => $post, 'comments' => $comments]);
     }
 
     public function addComment(Request $request)
@@ -30,13 +30,17 @@ class HomeController extends Controller
             'post_id' => 'required|exists:posts,id'
         ]);
 
-        $comment = new Comment();
-        $comment->comment = $request->comment;
-        $comment->user_id = $request->user()->id;
-        $comment->post_id = $request->post_id;
-        $comment->save();
+        try {
+            $comment = new Comment();
+            $comment->comment = $request->comment;
+            $comment->user_id = $request->user()->id;
+            $comment->post_id = $request->post_id;
+            $comment->save();
 
-        return redirect()->back();
+            return redirect()->back()->with('success', 'Commented Succesfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
     public function blogs()
     {

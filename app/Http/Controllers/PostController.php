@@ -73,7 +73,6 @@ class PostController extends Controller
             'title' => 'required',
             'content' => 'required',
             'category_id' => 'required',
-            'cover_image' => 'required'
         ]);
 
         try {

@@ -28,7 +28,8 @@
                             {{ $header }}
                         </h3>
                     @endif
-
+                    <!-- alert notification -->
+                    <x-alert />
                     {{ $slot }}
                 </div>
             </main>

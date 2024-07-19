@@ -11,52 +11,56 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body style="min-height: 100vh;">
+<body style="min-height:100vh;position:relative">
     <header class="bg-gray-800 text-white p-4 flex justify-between items-center px-5" style="height: 70px;">
         <div class="text-lg font-semibold">
             Blog Application
         </div>
-        <div class=" flex items-center">
+        <div class=" flex items-center ">
             <a href="{{route('posts.create')}}">
                 <x-primary-button>Submit an article</x-primary-button>
             </a>
-            @if (Auth::user())
-                <x-dropdown>
-                    <x-slot name="trigger">
-                        <button @click="dropdownOpen = ! dropdownOpen" class="relative block overflow-hidden">
-                            {{ Auth::user()->name }}
-                        </button>
-                    </x-slot>
+            <div class="ml-4">
+                @if (Auth::user())
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button @click="dropdownOpen = ! dropdownOpen" class="relative block overflow-hidden">
+                                {{ Auth::user()->name }}
+                            </button>
+                        </x-slot>
 
-                    <x-slot name="content">
+                        <x-slot name="content">
 
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            @else
-                <a href="{{route('login')}}">
-                    <x-secondary-button>
-                        Login
-                    </x-secondary-button>
-                </a>
-            @endif
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('Log out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
+                @else
+                    <a href="{{route('login')}}">
+                        <x-secondary-button>
+                            Login
+                        </x-secondary-button>
+                    </a>
+                @endif
+            </div>
         </div>
     </header>
 
     <main class="overflow-y-auto overflow-x-hidden flex-1">
-        <div class="container px-6 py-8 mx-auto">
+        <div class="container px-6 py-8 mx-auto my-5">
+            <x-alert />
             {{ $slot }}
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white p-4 flex justify-center items-center" style="height: 70px;">
-        &copy; 2024.
+    <footer class="bg-gray-800 text-white p-4 flex justify-center items-center w-full"
+        style="height: 70px;position:absolute;bottom:0">
+        Copyright &copy; 2024.
     </footer>
 </body>
 

@@ -6,7 +6,7 @@
             <h2 class="text-2xl">Recent Posts</h2>
             <a href="/blogs" class="text-blue-500">View All</a>
         </div>
-        <div class="flex flex-wrap justify-between mt-10">
+        <div style="display:flex ; flex-wrap:wrap" class="justify-between mt-10">
 
             @foreach ($recentPosts as $post)
                 <div
