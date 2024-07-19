@@ -63,7 +63,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-
+        $this->authorize('view', $post);
         return view('posts.edit', ['post' => $post, 'categories' => Category::all()]);
     }
 
@@ -75,6 +75,8 @@ class PostController extends Controller
             'category_id' => 'required',
         ]);
 
+
+        $this->authorize('update', $post);
         try {
             $post->title = $request->title;
             $post->content = $request->content;
@@ -102,6 +104,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('destroy', $post);
         $post->delete();
 
         return redirect()->route('posts.index')
